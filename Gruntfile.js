@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       }
     },
     // 文件合并,
-    // 依然存放在当前文件，压缩时从当前文件获取
+    // 存放在<%= config.dist %>文件，以.min.*后缀，使得压缩后覆盖点合并文件
     concat: {
       options: {
         separator: ';',
@@ -75,18 +75,18 @@ module.exports = function (grunt) {
         src: [
           "<%= config.src %>/js/*.js",
         ],
-        dest: "<%= config.src %>/js/app.js"
+        dest: "<%= config.dist %>/js/app.min.js"
       },
       // 将所有css文件合并为style.css
       css: {
         src: [
           "<%= config.src %>/css/*.css"
         ],
-        dest: "<%= config.src %>/css/style.css"
+        dest: "<%= config.dist %>/css/style.min.css"
       }
     },
     //压缩js，
-    // 从<%= config.src %>目录下获取(合并的app.js)，存到<%= config.dist %>目录
+    // 从<%= config.dist %>目录下获取(合并的app.js)，存到<%= config.dist %>目录
     uglify: {
       options: {
         //合并时允许输出头部信息
@@ -105,15 +105,15 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= config.src %>/js',
-          src: ['app.js'],
+          cwd: '<%= config.dist %>/js',
+          src: ['*.js'],
           dest: '<%= config.dist %>/js',
           ext: '.min.js'
         }]
       }
     },
     //css压缩
-    // 从css文件夹下获取，存入<%= config.dist %>
+    // 从<%= config.dist %>css文件夹下获取，存入<%= config.dist %>
     cssmin: {
       options: {
         stripBanners: true, //合并时允许输出头部信息
@@ -122,15 +122,15 @@ module.exports = function (grunt) {
       build: {
         files: [{
           expand: true,
-          cwd: '<%= config.src %>/css',
-          src: ['style.css', '!*.min.css'],
+          cwd: '<%= config.dist %>/css',
+          src: ['*.css'],
           dest: '<%= config.dist %>/css',
           ext: '.min.css'
         }]
       }
     },
     //对css和js文件重命名，添加版本号
-    // html和图片文件不加版本号
+    // html和图片文件除外
     filerev: {
       build: {
         files: [{
