@@ -92,7 +92,7 @@ module.exports = function (grunt) {
         //合并时允许输出头部信息
         stripBanners: true,
         // 此处定义的banner注释将插入到输出文件的顶部
-        banner: '/*! <%= pkg.author.name %>-app.min.js-<%=pkg.verson%> 最后修改于：<%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.author %>-app.min.js-<%=pkg.version%> 最后修改于：<%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
         options: {
@@ -117,7 +117,7 @@ module.exports = function (grunt) {
     cssmin: {
       options: {
         stripBanners: true, //合并时允许输出头部信息
-        banner: '/*! <%= pkg.author.name %>-style.min.css-<%=pkg.verson%> 最后修改于：<%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.author %>-style.min.css-<%=pkg.version%> 最后修改于：<%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
         files: [{
