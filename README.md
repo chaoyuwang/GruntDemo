@@ -2,10 +2,10 @@
 > 一个简单的Grunt配置文件 Gruntfile.js
 
 ```
-<!-- install package -->
+// install package
 npm install
-<!-- build -->
+// build
 grunt
-<!-- view -->
+// preview
 http://localhost:8000
 ```
